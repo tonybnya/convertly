@@ -29,6 +29,10 @@ const Converter = () => {
           <div class="absolute inset-0 h-full w-full scale-0 rounded-xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
         </button>
       </div>
+
+      <div className='py-6 text-red-500 text-3xl'>
+        1 USD = 0.91 EUR
+      </div>
     </div>
   )
 }
