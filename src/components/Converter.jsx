@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 import Header from './Header';
+import Currency from './Currency';
 
 const Converter = () => {
   // Currencies API URL: https://api.frankfurter.app/currencies
   // Conversion API URL: https://api.frankfurter.app/latest?amount=1&from=USD&to=EUR
   const [amount, setAmount] = useState(1);
   const [currencies, setCurrencies] = useState([]);
+  const [from, setFrom] = useState('USD');
+  const [to, setTo] = useState('EUR');
 
   const fetchCurrencies = async () => {
     try {
       const response = await fetch('https://api.frankfurter.app/currencies');
       const data = await response.json();
-      setCurrencies(data);
-    //   setCurrencies(Object.keys(data));
+      setCurrencies(Object.keys(data));
+      // setCurrencies(data);
     } catch (error) {
       console.error('Error fetching currencies:', error);
     }
@@ -24,11 +27,24 @@ const Converter = () => {
 
   console.log(currencies);
 
+  const converter = async () => {
+    try {
+      const response = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=USD&to=EUR`);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching currencies:', error);
+    }
+  }
+
   return (
     <div className='rounded-lg shadow-2xl p-4 bg-white max-lg:w-[80%] lg:w-1/2 mx-auto my-10 flex flex-col items-center justify-center'>
       <Header />
 
-      {/* <div>dropdowns</div> */}
+      {/* Currencies Dropdowns */}
+      <Currency currencies={currencies} title='From:' />
+      {/* button to swap currencies */}
+      <Currency currencies={currencies} title='To:' />
 
       <div className='mt-4'>
         <label
@@ -46,7 +62,7 @@ const Converter = () => {
       </div>
 
       <div className="flex justify-end mt-6">
-        <button className="group relative h-12 w-36 overflow-hidden rounded-xl bg-blue-500 text-lg font-bold text-white">
+        <button onClick={converter} className="group relative h-12 w-36 overflow-hidden rounded-xl bg-blue-500 text-lg font-bold text-white">
           Convert
           <div className="absolute inset-0 h-full w-full scale-0 rounded-xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
         </button>
