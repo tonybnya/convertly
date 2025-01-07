@@ -11,13 +11,13 @@ const Currency = ({
   return (
     <div>
       <label
-        className='block text-gray-700 font-semibold mb-1'
+        className='block text-gray-700 font-semibold text-sm mb-1'
         htmlFor={title}
       >
         {title}
       </label>
       <div>
-        <select className='w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-blue-500'>
+        <select className='w-full p-2 border border-gray-300 bg-slate-100 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-blue-500'>
           {currencies.map((currency) => {
             return (
               <option

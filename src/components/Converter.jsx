@@ -38,7 +38,7 @@ const Converter = () => {
   }
 
   return (
-    <div className='rounded-lg shadow-2xl p-4 bg-white max-lg:w-[80%] lg:w-1/2 mx-auto my-10 flex flex-col items-center justify-center'>
+    <div className='rounded-lg shadow-2xl p-4 bg-white mx-auto my-4 flex flex-col items-center justify-center'>
       <Header />
 
       {/* Currencies Dropdowns */}
